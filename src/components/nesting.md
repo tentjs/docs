@@ -3,6 +3,10 @@
 In Tent you can nest components by using the `mount` function inside the `view` method of another component.
 
 ```typescript
+import { type Component, mount, tags } from "@tentjs/tent";
+
+const { div } = tags;
+
 const Child: Component = {
   view: () => {
     return div("I am a child component");
@@ -31,6 +35,10 @@ It is very common to think that everything has to be a component. This is someth
 This example is a bit silly but you get the idea.
 
 ```typescript
+import { type Component, mount, tags } from "@tentjs/tent";
+
+const { div } = tags;
+
 type Variants = "primary" | "secondary" | "tertiary";
 
 const primary = () => div("I am the primary variant");
