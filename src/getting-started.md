@@ -24,3 +24,8 @@ That's it! You are ready to start building. Next up you should read about [Compo
 ### Typescript
 
 Tent is written in TypeScript. It is not required to use TypeScript, but it is highly **recommended**. The rest of the documentation will be written as if you are using TypeScript - because you should be.
+
+## Questions?
+
+If you have any questions, feel free to ask in the
+[Discussions](https://github.com/orgs/tentjs/discussions), catch me on [X](https://x.com/seb_lks), or [open an issue on GitHub](https://github.com/tentjs/tent/issues). I'm happy to help!
