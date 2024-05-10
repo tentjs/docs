@@ -45,7 +45,7 @@ strong("Hello, world!", { style: "color: pink;" });
 ## A real world example
 
 ```typescript
-import { type Component, mount, tags } from "@tentjs/tent";
+import { type Component, type Children, mount, tags } from "@tentjs/tent";
 
 const { div, p } = tags;
 
