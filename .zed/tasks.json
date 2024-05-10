@@ -1,0 +1,10 @@
+[
+  {
+    "label": "mdbook: serve",
+    "command": "mdbook serve --open"
+  },
+  {
+    "label": "mdbook: build",
+    "command": "mdbook build"
+  }
+]

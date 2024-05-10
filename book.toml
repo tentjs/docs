@@ -1,0 +1,6 @@
+[book]
+authors = ["sebkolind"]
+language = "en"
+multilingual = false
+src = "src"
+title = "⛺ Tent docs"
