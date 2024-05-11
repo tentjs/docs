@@ -8,6 +8,7 @@
   - [Passing data](./components/passing-data.md)
   - [Nesting](./components/nesting.md)
   - [State](./components/state.md)
+  - [Conditionals](./components/conditionals.md)
 - [API](./api.md)
   - [Mount](./api/mount.md)
   - [Tags](./api/tags.md)
