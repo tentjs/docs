@@ -16,7 +16,12 @@ type State = {
 export const Counter: Component<State> = {
   state: { count: 0 },
   view: ({ state }) =>
-    button(`Clicked ${state.count} times`, { onclick: () => state.count++ }),
+    button(
+      // Use the state with `state.X`
+      `Clicked ${state.count} times`,
+      // Update the state with an event listener
+      { onclick: () => state.count++ },
+    ),
 };
 
 mount(document.body, Counter);
