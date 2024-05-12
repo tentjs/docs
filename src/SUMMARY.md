@@ -3,6 +3,7 @@
 - [Getting started](./getting-started.md)
 - [What is Tent?](./what-is-it.md)
 - [Components](./components.md)
+  - [View](./components/view.md)
   - [Tags](./components/tags.md)
   - [Attributes](./components/attributes.md)
   - [Passing data](./components/passing-data.md)
