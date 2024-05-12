@@ -65,3 +65,29 @@ The HTML:
 ```html
 <div message="morning"></div>
 ```
+
+## Passing data to nested components
+
+You can pass data to nested components by using the attributes object on the element you are mounting the nested component to.
+
+```typescript
+import { type Component, mount, tags } from "@tentjs/tent";
+
+const { div } = tags;
+
+const Greeting: Component = {
+  view: ({ attr }) => {
+    // `who` is the attribute passed to the `Greeting` component.
+    const who = attr("who") ?? "world";
+
+    return div(`Hello, ${who}!`);
+  },
+};
+
+const Parent: Component = {
+  // `who` can be accessed in the `Greeting` component as an attribute.
+  view: () => mount(div([], { who: "John" }), Greeting),
+};
+
+mount(document.body, Parent);
+```
