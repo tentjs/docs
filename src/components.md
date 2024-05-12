@@ -14,13 +14,10 @@ const HelloWorld: Component = {
 };
 
 mount(document.body, HelloWorld);
-```
 
-### Mounting to multiple elements
+// or, if you want to mount a component to all elements with a specific class,
+// you can use `document.querySelectorAll` and `forEach`.
 
-If you'd like to mount a component to multiple elements, you simply loop over the elements and call `mount` for each element.
-
-```typescript
 document.querySelectorAll(".hello-world").forEach((el) => {
   mount(el, HelloWorld);
 });

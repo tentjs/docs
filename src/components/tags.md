@@ -42,7 +42,7 @@ strong("Hello, world!", { style: "color: pink;" });
 // => <strong style="color: pink;">Hello, world!</strong>
 ```
 
-## A real world example
+### A real world example
 
 ```typescript
 import { type Component, type Children, mount, tags } from "@tentjs/tent";
