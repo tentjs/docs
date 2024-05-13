@@ -1,6 +1,6 @@
 # Nesting components
 
-In Tent you can nest components by using the `mount` function inside the `view` method of another component.
+In Tent you can nest components by using passing a component as the first argument to a tag.
 
 ```typescript
 import { type Component, mount, tags } from "@tentjs/tent";
@@ -8,21 +8,21 @@ import { type Component, mount, tags } from "@tentjs/tent";
 const { div } = tags;
 
 const Child: Component = {
-  view: () => {
-    return div("I am a child component");
-  },
+  view: ({ attr }) => div(attr("msg") ?? "Hi!"),
 };
 
 const Parent: Component = {
-  view: () => {
-    return div([
-      "I am a parent component",
-      // The child component is mounted here
-      // `div([])` is the element to which the child component is mounted.
-      // It could be any element, like `span([])`
-      mount(div([]), Child),
-    ]);
-  },
+  view: () =>
+    div([
+      "I am the parent component.",
+      // The child component will be mounted to the tag, in this case a div.
+      // You can use any valid tag here - even custom tags, created with `createTag`.
+      div(
+        Child,
+        // You can pass attributes to the child component by passing an object as the second argument.
+        { msg: "Hello, World!" },
+      ),
+    ]),
 };
 
 mount(document.body, Parent);
@@ -60,7 +60,7 @@ const Parent: Component<State> = {
     const variant = attr("variant");
 
     return div([
-      `I am a parent component, and the variant is ${variant}`,
+      `I am the parent component, and the variant is ${variant}`,
       child(variant ?? "primary"),
     ]);
   },
