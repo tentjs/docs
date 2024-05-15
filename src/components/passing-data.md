@@ -1,67 +1,51 @@
 # Passing data to components
 
-In Tent, you can pass data to components by using custom attributes. Custom attributes are attributes that are not part of the standard HTML attributes.
+In Tent, you can pass data to components by using custom data-\* attributes. It's simple and easy to understand.
+
+> **Note:** It's by design that `JSON.parse()` isn't called internally on all data attributes. You should be in full control of the data flow, and you should be explicit about what you expect.
+
+```html
+<div data-list='["foo", "bar", "baz"]' data-message="Hello, world!"></div>
+```
 
 ```typescript
 import { type Component, mount, tags } from "@tentjs/tent";
 
-const { p } = tags;
+const { div, ul, li, p } = tags;
 
-const Greeting: Component = {
-  view: ({ attr }) => {
-    // `attr` returns the value of the attribute,
-    // or `undefined` if the attribute is not present.
-    // Therefore we provide a fallback message.
-    const message = attr("message") ?? "No message";
+// This type will give your autocompletion in your editor,
+// when using `el.dataset.X`. In this case it would suggest `list`, `message` and `amount`.
+type Attrs = {
+  list: string;
+  message: string;
+  amount: string;
+};
 
-    return p(message);
+// You could argue that `List` also shouldn't be a component,
+// but for the sake of this example, let's keep it as a component.
+const List: Component<{}, Attrs> = {
+  view: ({ el }) => {
+    // Cast the parsed string to an array of strings
+    const list: string[] = JSON.parse(el.dataset.list);
+    // No need to cast the message, since it's already defined as a string
+    const message = el.dataset.message;
+    // JSON.parse() will return a number, so no need to cast it
+    const amount: number = JSON.parse(el.dataset.amount);
+
+    return div([
+      p(`The message is: "${message}"`),
+      p(`The amount is: ${amount}`),
+      ul(list.map((item, idx) => listItem(item, idx))),
+    ]);
   },
 };
 
-mount(document.querySelector(".greeting"), Greeting);
-```
-
-And the HTML would look like this:
-
-```html
-<div class="greeting" message="Hello, world!"></div>
-```
-
-## Typed attributes
-
-In reality all attributes are strings, but you can use the generic type on `attr<T>(name: string)` to provide type information.
-
-```typescript
-import { type Component, mount, tags } from "@tentjs/tent";
-
-const { p } = tags;
-
-enum Messages {
-  Morning = "morning",
-  Night = "goodbye",
-}
-
-const Greeting: Component = {
-  view: ({ attr }) => {
-    const message = attr<Messages>("message");
-    // => `message` is of type `Messages | undefined`
-
-    switch (message) {
-      case Messages.Morning:
-        return p("Hello, world!");
-      case Messages.Night:
-        return p("Goodbye, world!");
-      default:
-        return p("No message");
-    }
-  },
+// This is a pure function - it'll always return the same output for the same input.
+// This makes it easy to test and reason about.
+const listItem = (item: string, idx: number) => {
+  return li(`Item ${idx}: ${item}`);
 };
 
-mount(document.body, Greeting);
-```
-
-The HTML:
-
-```html
-<div message="morning"></div>
+// In a real app, you would probably put `listItem` in a separate file.
+export { List, listItem };
 ```
