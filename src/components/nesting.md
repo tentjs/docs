@@ -1,6 +1,6 @@
 # Nesting components
 
-> Since `v0.0.25` you can't nest components. Instead you can create functions that return elements.
+> **Note:** Since `v0.0.25` you can't nest components. Instead you can create functions that return elements.
 
 You can't nest components in Tent. This is by design.
 
