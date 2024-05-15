@@ -1,5 +1,7 @@
 # Attr
 
+> **Note:** `attr()` is deprecated as of `v0.0.26`. Use `el.dataset` instead. See [Passing data](../components/passing-data.md) for more information.
+
 The `attr<T = string>(name: string)` function is used to get the value of an attribute from the component's element.
 
 In other libraries/frameworks you might see this referred to as `props` or `properties`. But, since these are in fact just attributes on an element, they're called `attributes` in Tent.
